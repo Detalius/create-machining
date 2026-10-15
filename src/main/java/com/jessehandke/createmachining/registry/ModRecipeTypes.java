@@ -1,5 +1,6 @@
 package com.jessehandke.createmachining.registry;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.jessehandke.createmachining.CreateMachining;
@@ -10,9 +11,11 @@ import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -65,6 +68,11 @@ public enum ModRecipeTypes implements IRecipeTypeInfo {
     @Override
     public <I extends RecipeInput, R extends Recipe<I>> RecipeType<R> getType() {
         return (RecipeType<R>) type.get();
+    }
+
+    /** Look for a recipe of this type that matches the given input. Empty if nothing matches. */
+    public <I extends RecipeInput, R extends Recipe<I>> Optional<RecipeHolder<R>> find(I input, Level level) {
+        return level.getRecipeManager().getRecipeFor(getType(), input, level);
     }
 
     /**
