@@ -59,8 +59,13 @@ neoForge {
 }
 
 dependencies {
-    // Create itself. Its published metadata pulls in Registrate and Ponder for us.
-    implementation "com.simibubi.create:create-${minecraft_version}:${create_version}"
+    // Create itself. transitive = false means "just Create's jar": its published dependency list
+    // also names a pile of Create's own dev-only mods, so we list the real requirements ourselves.
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}") {
+        transitive = false
+    }
+    implementation "com.tterrag.registrate:Registrate:${registrate_version}"
+    implementation "net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}"
 
     // Flywheel is Create's rendering engine: the API to compile against, the full mod to run with.
     compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}"

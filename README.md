@@ -2,7 +2,7 @@
 
 Precision machining for [Create](https://github.com/Creators-of-Create/Create): CNC lathes, mills, tooling, and the hum of a spindle at speed.
 
-**Targets:** Minecraft 1.21.1 · NeoForge · Create 6.0.x
+**Targets:** Minecraft 1.21.1 · NeoForge · Create 6.0.10+
 
 ## What's in v0.2
 
