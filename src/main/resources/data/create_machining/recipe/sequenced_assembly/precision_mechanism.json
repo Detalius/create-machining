@@ -1,0 +1,70 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "tag": "c:plates/gold"
+  },
+  "loops": 1,
+  "transitional_item": {
+    "id": "create:incomplete_precision_mechanism"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "create:incomplete_precision_mechanism"
+        },
+        {
+          "type": "neoforge:components",
+          "items": "create_machining:iron_bushing",
+          "components": {
+            "create_machining:grade": "perfect"
+          },
+          "strict": false
+        }
+      ],
+      "results": [
+        {
+          "id": "create:incomplete_precision_mechanism"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "create:incomplete_precision_mechanism"
+        },
+        {
+          "item": "create:cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "id": "create:incomplete_precision_mechanism"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "create:incomplete_precision_mechanism"
+        },
+        {
+          "item": "create:large_cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "id": "create:incomplete_precision_mechanism"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "create:precision_mechanism"
+    }
+  ]
+}

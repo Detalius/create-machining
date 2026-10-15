@@ -1,0 +1,14 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "create_machining:brass_bushing"
+    }
+  ],
+  "processing_time": 100,
+  "results": [
+    {
+      "id": "create_machining:brass_swarf"
+    }
+  ]
+}

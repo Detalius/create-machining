@@ -2,6 +2,7 @@ package com.jessehandke.createmachining.content.inspection;
 
 import java.util.List;
 
+import com.jessehandke.createmachining.content.quality.QualityGrade;
 import com.jessehandke.createmachining.content.quality.QualityModel;
 import com.jessehandke.createmachining.registry.ModBlockEntities;
 import com.jessehandke.createmachining.registry.ModDataComponents;
@@ -27,8 +28,9 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
 
 /**
- * Measures machined parts one at a time. Each part takes INSPECTION_TIME ticks, then comes out
- * with its gage reading: the hidden process score from the lathe plus a 0-5% luck roll.
+ * Measures machined parts one at a time. Each part takes INSPECTION_TIME ticks. Behind the scenes
+ * it computes the gage reading (hidden process score from the lathe + a 0-5% luck roll), then
+ * stamps the part with the matching QualityGrade.
  *
  * SmartBlockEntity is Create's base for block entities that tick and sync, minus the kinetics.
  */
@@ -98,13 +100,14 @@ public class InspectionStationBlockEntity extends SmartBlockEntity {
         setChanged();
     }
 
-    /** One part off the stack, with its hidden score swapped for a gage reading. */
+    /** One part off the stack, with its hidden score swapped for a grade. */
     private ItemStack measure(ItemStack part) {
         ItemStack single = part.copyWithCount(1);
         int processScore = single.getOrDefault(ModDataComponents.PROCESS_SCORE, 0);
         int luckRoll = level.random.nextInt(QualityModel.LUCK_MAX + 1); // 0..5 inclusive
+        int gage = QualityModel.gage(processScore, luckRoll);
         single.remove(ModDataComponents.PROCESS_SCORE);
-        single.set(ModDataComponents.GAGE, QualityModel.gage(processScore, luckRoll));
+        single.set(ModDataComponents.GRADE, QualityGrade.fromGage(gage));
         return single;
     }
 

@@ -1,0 +1,14 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "create_machining:iron_bushing"
+    }
+  ],
+  "processing_time": 100,
+  "results": [
+    {
+      "id": "create_machining:iron_swarf"
+    }
+  ]
+}

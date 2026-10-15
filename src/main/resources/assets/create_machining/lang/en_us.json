@@ -8,12 +8,19 @@
   "block.create_machining.inspection_station": "Inspection Station",
   "item.create_machining.carbide_insert": "Carbide Insert",
   "create_machining.tooltip.uninspected": "Uninspected",
-  "create_machining.tooltip.gage": "Gage: %s",
   "create_machining.goggles.lathe_header": "Lathe Setup:",
   "create_machining.goggles.no_tool": "No insert loaded",
   "create_machining.goggles.tool_life": "Insert life: %s%%",
   "create_machining.goggles.ideal_speed": "Ideal spindle speed: %s-%s RPM",
   "create_machining.goggles.in_band": "Running at %s RPM: in band",
   "create_machining.goggles.too_slow": "Running at %s RPM: too slow",
-  "create_machining.goggles.too_fast": "Running at %s RPM: too fast"
+  "create_machining.goggles.too_fast": "Running at %s RPM: too fast",
+  "item.create_machining.bearing_assembly": "Bearing Assembly",
+  "item.create_machining.incomplete_bearing_assembly": "Incomplete Bearing Assembly",
+  "create_machining.tooltip.quality": "Quality: %s",
+  "create_machining.grade.perfect": "Perfect",
+  "create_machining.grade.in_tolerance": "In-Tolerance",
+  "create_machining.grade.out_of_tolerance": "Out of Tolerance",
+  "create_machining.grade.needs_rework": "Needs Rework",
+  "create_machining.grade.scrap": "Scrap"
 }

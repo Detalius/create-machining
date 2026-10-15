@@ -186,14 +186,43 @@ public class CncLatheBlockEntity extends KineticBlockEntity {
         // Machined parts get the hidden process score; swarf doesn't.
         for (ItemStack result : recipe.rollResults(level.random)) {
             if (result.is(ModTags.MACHINED_PARTS))
-                result.set(ModDataComponents.PROCESS_SCORE, processScore);
-            ItemHandlerHelper.insertItemStacked(outputInv, result, false);
+                insertIntoLot(result, processScore);
+            else
+                ItemHandlerHelper.insertItemStacked(outputInv, result, false);
         }
 
         wearTool(QualityModel.toolWearPerPart(getSpeed(), recipe.getMaxRpm()));
 
         sendData();  // sync to clients
         setChanged(); // mark for saving
+    }
+
+    /**
+     * Put fresh parts into the output as one lot. If the bin already holds uninspected parts of
+     * the same kind, they're pooled into a single stack with a count-weighted average score
+     * (like mixing parts in one tote), so they don't split into a stack per score.
+     */
+    private void insertIntoLot(ItemStack parts, int processScore) {
+        for (int slot = 0; slot < outputInv.getSlots() && !parts.isEmpty(); slot++) {
+            ItemStack lot = outputInv.getStackInSlot(slot);
+            if (!lot.is(parts.getItem()) || !lot.has(ModDataComponents.PROCESS_SCORE))
+                continue;
+            int room = lot.getMaxStackSize() - lot.getCount();
+            if (room <= 0)
+                continue;
+            int moved = Math.min(room, parts.getCount());
+            int lotScore = lot.getOrDefault(ModDataComponents.PROCESS_SCORE, 0);
+            int pooledScore = Math.round((lotScore * lot.getCount() + processScore * moved)
+                    / (float) (lot.getCount() + moved));
+            ItemStack merged = lot.copyWithCount(lot.getCount() + moved);
+            merged.set(ModDataComponents.PROCESS_SCORE, pooledScore);
+            outputInv.setStackInSlot(slot, merged);
+            parts.shrink(moved);
+        }
+        if (!parts.isEmpty()) {
+            parts.set(ModDataComponents.PROCESS_SCORE, processScore);
+            ItemHandlerHelper.insertItemStacked(outputInv, parts, false);
+        }
     }
 
     private void wearTool(int amount) {

@@ -1,6 +1,7 @@
 package com.jessehandke.createmachining.client;
 
 import com.jessehandke.createmachining.CreateMachining;
+import com.jessehandke.createmachining.content.quality.QualityGrade;
 import com.jessehandke.createmachining.registry.ModBlockEntities;
 import com.jessehandke.createmachining.registry.ModDataComponents;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
@@ -9,7 +10,6 @@ import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -33,13 +33,14 @@ public class CreateMachiningClient {
         NeoForge.EVENT_BUS.addListener(CreateMachiningClient::addQualityTooltip);
     }
 
-    /** "Uninspected" on fresh parts, "Gage: 97%" on measured ones. */
+    /** "Uninspected" on fresh parts, "Quality: Perfect" (etc.) on inspected ones. */
     private static void addQualityTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
-        Integer gage = stack.get(ModDataComponents.GAGE); // Integer (not int) because it can be null
-        if (gage != null) {
-            event.getToolTip().add(1, Component.translatable("create_machining.tooltip.gage",
-                    Component.literal(gage + "%").withColor(gageColor(gage))).withStyle(ChatFormatting.GRAY));
+        QualityGrade grade = stack.get(ModDataComponents.GRADE); // null if the part has no grade
+        if (grade != null) {
+            event.getToolTip().add(1, Component.translatable("create_machining.tooltip.quality",
+                    Component.translatable("create_machining.grade." + grade.id()).withStyle(gradeColor(grade)))
+                    .withStyle(ChatFormatting.GRAY));
         } else if (stack.has(ModDataComponents.PROCESS_SCORE)) {
             event.getToolTip().add(1, Component.translatable("create_machining.tooltip.uninspected")
                     .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
@@ -47,12 +48,17 @@ public class CreateMachiningClient {
     }
 
     /**
-     * Smooth red to green, no hard bands: 50% and below is red, 100% is green, everything in
-     * between slides through orange and yellow. (Hue 0 = red, 1/3 = green, on a 0-1 color wheel.)
+     * Java's "switch expression": like C's switch, but each case gives back a value and there's
+     * no fall-through, so no break statements needed.
      */
-    private static int gageColor(int gage) {
-        float t = Mth.clamp((gage - 50) / 50f, 0f, 1f);
-        return Mth.hsvToRgb(t / 3f, 0.75f, 1f);
+    private static ChatFormatting gradeColor(QualityGrade grade) {
+        return switch (grade) {
+            case PERFECT -> ChatFormatting.AQUA;
+            case IN_TOLERANCE -> ChatFormatting.GREEN;
+            case OUT_OF_TOLERANCE -> ChatFormatting.YELLOW;
+            case NEEDS_REWORK -> ChatFormatting.GOLD;
+            case SCRAP -> ChatFormatting.RED;
+        };
     }
 
     /**

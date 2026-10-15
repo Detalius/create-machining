@@ -1,0 +1,72 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "create:iron_sheet"
+  },
+  "loops": 1,
+  "transitional_item": {
+    "id": "create_machining:incomplete_bearing_assembly"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "create_machining:incomplete_bearing_assembly"
+        },
+        {
+          "type": "neoforge:components",
+          "items": "create_machining:brass_bushing",
+          "components": {
+            "create_machining:grade": "out_of_tolerance"
+          },
+          "strict": false
+        }
+      ],
+      "results": [
+        {
+          "id": "create_machining:incomplete_bearing_assembly"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "create_machining:incomplete_bearing_assembly"
+        },
+        {
+          "item": "create:andesite_alloy"
+        }
+      ],
+      "results": [
+        {
+          "id": "create_machining:incomplete_bearing_assembly"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "create_machining:incomplete_bearing_assembly"
+        }
+      ],
+      "results": [
+        {
+          "id": "create_machining:incomplete_bearing_assembly"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "create_machining:bearing_assembly",
+      "chance": 70.0
+    },
+    {
+      "id": "create_machining:brass_swarf",
+      "chance": 30.0
+    }
+  ]
+}

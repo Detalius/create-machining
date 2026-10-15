@@ -1,0 +1,25 @@
+{
+  "type": "create_machining:turning",
+  "ingredients": [
+    {
+      "type": "neoforge:components",
+      "items": "create_machining:brass_bushing",
+      "components": {
+        "create_machining:grade": "needs_rework"
+      },
+      "strict": false
+    }
+  ],
+  "processing_time": 60,
+  "min_rpm": 64,
+  "max_rpm": 192,
+  "results": [
+    {
+      "id": "create_machining:brass_bushing"
+    },
+    {
+      "id": "create_machining:brass_swarf",
+      "chance": 0.25
+    }
+  ]
+}

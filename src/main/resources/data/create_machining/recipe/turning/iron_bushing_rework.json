@@ -1,0 +1,25 @@
+{
+  "type": "create_machining:turning",
+  "ingredients": [
+    {
+      "type": "neoforge:components",
+      "items": "create_machining:iron_bushing",
+      "components": {
+        "create_machining:grade": "needs_rework"
+      },
+      "strict": false
+    }
+  ],
+  "processing_time": 60,
+  "min_rpm": 32,
+  "max_rpm": 96,
+  "results": [
+    {
+      "id": "create_machining:iron_bushing"
+    },
+    {
+      "id": "create_machining:iron_swarf",
+      "chance": 0.25
+    }
+  ]
+}
