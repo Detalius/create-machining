@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BPB",
+    "SCS",
+    "AAA"
+  ],
+  "key": {
+    "B": { "item": "create:brass_sheet" },
+    "P": { "item": "create:precision_mechanism" },
+    "S": { "item": "create:shaft" },
+    "C": { "item": "create:brass_casing" },
+    "A": { "item": "create:andesite_alloy" }
+  },
+  "result": { "id": "create_machining:cnc_lathe", "count": 1 }
+}

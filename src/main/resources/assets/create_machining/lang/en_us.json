@@ -1,0 +1,8 @@
+{
+  "itemGroup.create_machining": "Create: Machining",
+  "block.create_machining.cnc_lathe": "CNC Lathe",
+  "item.create_machining.iron_bushing": "Iron Bushing",
+  "item.create_machining.brass_bushing": "Brass Bushing",
+  "item.create_machining.iron_swarf": "Iron Swarf",
+  "item.create_machining.brass_swarf": "Brass Swarf"
+}

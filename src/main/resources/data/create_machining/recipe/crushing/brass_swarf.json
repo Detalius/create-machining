@@ -1,0 +1,11 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    { "item": "create_machining:brass_swarf" }
+  ],
+  "processing_time": 100,
+  "results": [
+    { "id": "create:brass_nugget", "count": 3 },
+    { "id": "create:brass_nugget", "count": 2, "chance": 0.5 }
+  ]
+}

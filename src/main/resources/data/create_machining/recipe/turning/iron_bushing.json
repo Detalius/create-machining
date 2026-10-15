@@ -1,0 +1,11 @@
+{
+  "type": "create_machining:turning",
+  "ingredients": [
+    { "item": "minecraft:iron_ingot" }
+  ],
+  "processing_time": 150,
+  "results": [
+    { "id": "create_machining:iron_bushing", "count": 2 },
+    { "id": "create_machining:iron_swarf", "chance": 0.5 }
+  ]
+}

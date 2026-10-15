@@ -1,0 +1,11 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    { "item": "create_machining:iron_swarf" }
+  ],
+  "processing_time": 100,
+  "results": [
+    { "id": "minecraft:iron_nugget", "count": 3 },
+    { "id": "minecraft:iron_nugget", "count": 2, "chance": 0.5 }
+  ]
+}

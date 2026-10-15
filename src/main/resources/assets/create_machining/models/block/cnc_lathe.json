@@ -1,0 +1,37 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "bed": "create:block/andesite_casing",
+    "body": "create:block/brass_casing",
+    "particle": "create:block/brass_casing"
+  },
+  "elements": [
+    {
+      "name": "bed",
+      "from": [0, 0, 0], "to": [16, 5, 16],
+      "faces": {
+        "north": { "texture": "#bed" }, "south": { "texture": "#bed" },
+        "east":  { "texture": "#bed" }, "west":  { "texture": "#bed" },
+        "up":    { "texture": "#bed" }, "down":  { "texture": "#bed", "cullface": "down" }
+      }
+    },
+    {
+      "name": "headstock",
+      "from": [1, 5, 9], "to": [15, 15, 15.5],
+      "faces": {
+        "north": { "texture": "#body" }, "south": { "texture": "#body" },
+        "east":  { "texture": "#body" }, "west":  { "texture": "#body" },
+        "up":    { "texture": "#body" }
+      }
+    },
+    {
+      "name": "tailstock",
+      "from": [4, 5, 0.5], "to": [12, 12, 3.5],
+      "faces": {
+        "north": { "texture": "#body" }, "south": { "texture": "#body" },
+        "east":  { "texture": "#body" }, "west":  { "texture": "#body" },
+        "up":    { "texture": "#body" }
+      }
+    }
+  ]
+}

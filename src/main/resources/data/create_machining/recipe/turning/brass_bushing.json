@@ -1,0 +1,11 @@
+{
+  "type": "create_machining:turning",
+  "ingredients": [
+    { "item": "create:brass_ingot" }
+  ],
+  "processing_time": 100,
+  "results": [
+    { "id": "create_machining:brass_bushing", "count": 2 },
+    { "id": "create_machining:brass_swarf", "chance": 0.5 }
+  ]
+}
