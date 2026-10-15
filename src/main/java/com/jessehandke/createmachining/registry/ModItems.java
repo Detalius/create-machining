@@ -12,6 +12,11 @@ public final class ModItems {
 
     // The item form of the lathe, i.e. what sits in your inventory before you place it
     public static final DeferredItem<BlockItem> CNC_LATHE = ITEMS.registerSimpleBlockItem(ModBlocks.CNC_LATHE);
+    public static final DeferredItem<BlockItem> INSPECTION_STATION = ITEMS.registerSimpleBlockItem(ModBlocks.INSPECTION_STATION);
+
+    // Tooling. Durability = how many parts it can cut (overspeeding burns through it twice as fast).
+    public static final DeferredItem<Item> CARBIDE_INSERT = ITEMS.registerSimpleItem("carbide_insert",
+            new Item.Properties().durability(64));
 
     // Turned parts
     public static final DeferredItem<Item> IRON_BUSHING = ITEMS.registerSimpleItem("iron_bushing");

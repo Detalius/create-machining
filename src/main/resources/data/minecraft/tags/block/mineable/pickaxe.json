@@ -1,1 +1,1 @@
-{ "values": ["create_machining:cnc_lathe"] }
+{ "values": ["create_machining:cnc_lathe", "create_machining:inspection_station"] }

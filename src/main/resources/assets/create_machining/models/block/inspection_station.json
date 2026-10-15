@@ -1,0 +1,56 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "cabinet": "create:block/andesite_casing",
+    "plate": "minecraft:block/polished_granite",
+    "gage": "create:block/brass_casing",
+    "particle": "minecraft:block/polished_granite"
+  },
+  "elements": [
+    {
+      "name": "cabinet",
+      "from": [1, 0, 1], "to": [15, 10, 15],
+      "faces": {
+        "north": { "texture": "#cabinet" }, "south": { "texture": "#cabinet" },
+        "east":  { "texture": "#cabinet" }, "west":  { "texture": "#cabinet" },
+        "down":  { "texture": "#cabinet", "cullface": "down" }
+      }
+    },
+    {
+      "name": "surface_plate",
+      "from": [0, 10, 0], "to": [16, 14, 16],
+      "faces": {
+        "north": { "texture": "#plate" }, "south": { "texture": "#plate" },
+        "east":  { "texture": "#plate" }, "west":  { "texture": "#plate" },
+        "up":    { "texture": "#plate" }, "down":  { "texture": "#plate" }
+      }
+    },
+    {
+      "name": "height_gage_base",
+      "from": [10, 14, 2], "to": [14, 15, 6],
+      "faces": {
+        "north": { "texture": "#gage" }, "south": { "texture": "#gage" },
+        "east":  { "texture": "#gage" }, "west":  { "texture": "#gage" },
+        "up":    { "texture": "#gage" }
+      }
+    },
+    {
+      "name": "height_gage_column",
+      "from": [11.5, 15, 3.5], "to": [12.5, 23, 4.5],
+      "faces": {
+        "north": { "texture": "#gage" }, "south": { "texture": "#gage" },
+        "east":  { "texture": "#gage" }, "west":  { "texture": "#gage" },
+        "up":    { "texture": "#gage" }
+      }
+    },
+    {
+      "name": "height_gage_scriber",
+      "from": [8, 18, 3.5], "to": [11.5, 19, 4.5],
+      "faces": {
+        "north": { "texture": "#gage" }, "south": { "texture": "#gage" },
+        "up":    { "texture": "#gage" }, "down":  { "texture": "#gage" },
+        "west":  { "texture": "#gage" }
+      }
+    }
+  ]
+}

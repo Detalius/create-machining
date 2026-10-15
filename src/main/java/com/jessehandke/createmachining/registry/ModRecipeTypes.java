@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 
 import com.jessehandke.createmachining.CreateMachining;
 import com.jessehandke.createmachining.content.lathe.TurningRecipe;
-import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 
 import net.minecraft.core.registries.Registries;
@@ -32,16 +31,15 @@ import net.neoforged.neoforge.registries.DeferredRegister;
  */
 public enum ModRecipeTypes implements IRecipeTypeInfo {
     // JSON files with "type": "create_machining:turning" are read by this serializer
-    TURNING(TurningRecipe::new);
+    TURNING(TurningRecipe.Serializer::new);
 
     private final ResourceLocation id;
     private final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<?>> serializer;
     private final DeferredHolder<RecipeType<?>, RecipeType<?>> type;
 
-    ModRecipeTypes(StandardProcessingRecipe.Factory<?> factory) {
+    ModRecipeTypes(Supplier<RecipeSerializer<?>> serializerSupplier) {
         String name = name().toLowerCase(); // TURNING -> "turning"
         this.id = CreateMachining.asResource(name);
-        Supplier<RecipeSerializer<?>> serializerSupplier = () -> new StandardProcessingRecipe.Serializer<>(factory);
         this.serializer = Registers.SERIALIZERS.register(name, serializerSupplier);
         this.type = Registers.TYPES.register(name, () -> RecipeType.simple(id));
     }

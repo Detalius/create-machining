@@ -1,6 +1,7 @@
 package com.jessehandke.createmachining.registry;
 
 import com.jessehandke.createmachining.CreateMachining;
+import com.jessehandke.createmachining.content.inspection.InspectionStationBlock;
 import com.jessehandke.createmachining.content.lathe.CncLatheBlock;
 
 import net.minecraft.world.level.block.SoundType;
@@ -23,6 +24,14 @@ public final class ModBlocks {
                     .sound(SoundType.NETHERITE_BLOCK)
                     .requiresCorrectToolForDrops()
                     // the model isn't a full cube, so don't let it hide its neighbours' faces
+                    .noOcclusion()));
+
+    public static final DeferredBlock<InspectionStationBlock> INSPECTION_STATION = BLOCKS.register("inspection_station",
+            () -> new InspectionStationBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .strength(2.5f, 6.0f)
+                    .sound(SoundType.STONE)
+                    .requiresCorrectToolForDrops()
                     .noOcclusion()));
 
     private ModBlocks() {}

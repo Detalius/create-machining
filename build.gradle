@@ -40,7 +40,12 @@ neoForge {
             server()
             programArgument '--nogui'
         }
+        // Boots a headless world, runs every @GameTest, then exits (non-zero if any failed)
+        gameTestServer {
+            type = 'gameTestServer'
+        }
         configureEach {
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
             systemProperty 'forge.logging.markers', 'REGISTRIES'
             logLevel = org.slf4j.event.Level.INFO
         }
@@ -63,6 +68,14 @@ dependencies {
 
     // JEI only in our dev client, not a real dependency of the mod
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:19.21.0.247"
+
+    // JUnit for plain unit tests (src/test), e.g. the quality math
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
 
 // Fills in the ${...} placeholders inside src/main/templates (the mod's metadata file).

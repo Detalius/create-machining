@@ -46,8 +46,8 @@ public class CncLatheBlock extends HorizontalKineticBlock implements IBE<CncLath
 
     /**
      * Right-click behaviour:
-     *  - holding stock: load it into the lathe
-     *  - empty hand: unload finished parts (or the stock if there are no parts)
+     *  - holding stock or a carbide insert: load it
+     *  - empty hand: unload finished parts (or the stock, or the insert, in that order)
      */
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
@@ -57,14 +57,14 @@ public class CncLatheBlock extends HorizontalKineticBlock implements IBE<CncLath
         return onBlockEntityUseItemOn(level, pos, lathe -> {
             // The client only predicts the outcome (so your arm swings); the server does the real work.
             if (level.isClientSide)
-                return stack.isEmpty() || lathe.isValidStock(stack)
+                return stack.isEmpty() || lathe.accepts(stack)
                         ? ItemInteractionResult.SUCCESS
                         : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
             if (!stack.isEmpty()) {
-                ItemStack remainder = lathe.insertStock(stack);
+                ItemStack remainder = lathe.insertItem(stack);
                 if (remainder.getCount() == stack.getCount())
-                    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION; // not lathe stock
+                    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION; // not stock or tooling
                 player.setItemInHand(hand, remainder);
                 return ItemInteractionResult.SUCCESS;
             }

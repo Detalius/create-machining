@@ -1,0 +1,12 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    { "item": "minecraft:iron_ingot" },
+    { "item": "minecraft:coal" },
+    { "item": "minecraft:flint" }
+  ],
+  "results": [
+    { "id": "create_machining:carbide_insert", "count": 2 }
+  ]
+}

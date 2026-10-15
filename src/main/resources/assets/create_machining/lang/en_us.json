@@ -4,5 +4,16 @@
   "item.create_machining.iron_bushing": "Iron Bushing",
   "item.create_machining.brass_bushing": "Brass Bushing",
   "item.create_machining.iron_swarf": "Iron Swarf",
-  "item.create_machining.brass_swarf": "Brass Swarf"
+  "item.create_machining.brass_swarf": "Brass Swarf",
+  "block.create_machining.inspection_station": "Inspection Station",
+  "item.create_machining.carbide_insert": "Carbide Insert",
+  "create_machining.tooltip.uninspected": "Uninspected",
+  "create_machining.tooltip.gage": "Gage: %s",
+  "create_machining.goggles.lathe_header": "Lathe Setup:",
+  "create_machining.goggles.no_tool": "No insert loaded",
+  "create_machining.goggles.tool_life": "Insert life: %s%%",
+  "create_machining.goggles.ideal_speed": "Ideal spindle speed: %s-%s RPM",
+  "create_machining.goggles.in_band": "Running at %s RPM: in band",
+  "create_machining.goggles.too_slow": "Running at %s RPM: too slow",
+  "create_machining.goggles.too_fast": "Running at %s RPM: too fast"
 }

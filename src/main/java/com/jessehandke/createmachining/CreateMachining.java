@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import com.jessehandke.createmachining.registry.ModBlockEntities;
 import com.jessehandke.createmachining.registry.ModBlocks;
 import com.jessehandke.createmachining.registry.ModCreativeTabs;
+import com.jessehandke.createmachining.registry.ModDataComponents;
 import com.jessehandke.createmachining.registry.ModItems;
 import com.jessehandke.createmachining.registry.ModRecipeTypes;
+import com.jessehandke.createmachining.content.inspection.InspectionStationBlockEntity;
 import com.jessehandke.createmachining.content.lathe.CncLatheBlockEntity;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.api.stress.BlockStressValues;
@@ -30,6 +32,7 @@ public class CreateMachining {
         // NeoForge calls our suppliers later, at the moment the game is ready for them.
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModDataComponents.COMPONENTS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
         ModCreativeTabs.TABS.register(modEventBus);
@@ -38,6 +41,7 @@ public class CreateMachining {
         // "call this method when that event fires".
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(CncLatheBlockEntity::registerCapabilities);
+        modEventBus.addListener(InspectionStationBlockEntity::registerCapabilities);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

@@ -1,6 +1,7 @@
 package com.jessehandke.createmachining.registry;
 
 import com.jessehandke.createmachining.CreateMachining;
+import com.jessehandke.createmachining.content.inspection.InspectionStationBlockEntity;
 import com.jessehandke.createmachining.content.lathe.CncLatheBlockEntity;
 
 import net.minecraft.core.registries.Registries;
@@ -21,6 +22,13 @@ public final class ModBlockEntities {
             BLOCK_ENTITY_TYPES.register("cnc_lathe", () -> BlockEntityType.Builder
                     .of((pos, state) -> new CncLatheBlockEntity(ModBlockEntities.CNC_LATHE.get(), pos, state),
                             ModBlocks.CNC_LATHE.get())
+                    .build(null));
+
+    @SuppressWarnings("DataFlowIssue")
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<InspectionStationBlockEntity>> INSPECTION_STATION =
+            BLOCK_ENTITY_TYPES.register("inspection_station", () -> BlockEntityType.Builder
+                    .of((pos, state) -> new InspectionStationBlockEntity(ModBlockEntities.INSPECTION_STATION.get(), pos, state),
+                            ModBlocks.INSPECTION_STATION.get())
                     .build(null));
 
     private ModBlockEntities() {}
