@@ -15,7 +15,7 @@ public final class ModCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = TABS.register("main",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.create_machining"))
-                    .icon(() -> ModItems.CNC_LATHE.get().getDefaultInstance())
+                    .icon(() -> ModItems.BENCH_LATHE.get().getDefaultInstance())
                     // the lambda receives the tab's item list, and we add every one of our items to it
                     .displayItems((params, output) -> ModItems.ITEMS.getEntries()
                             .forEach(item -> output.accept(item.get())))

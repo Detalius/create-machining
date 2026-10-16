@@ -1,8 +1,9 @@
 package com.jessehandke.createmachining.registry;
 
 import com.jessehandke.createmachining.CreateMachining;
+import com.jessehandke.createmachining.content.cnc.CncLatheBlockEntity;
 import com.jessehandke.createmachining.content.inspection.InspectionStationBlockEntity;
-import com.jessehandke.createmachining.content.lathe.CncLatheBlockEntity;
+import com.jessehandke.createmachining.content.lathe.BenchLatheBlockEntity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,10 +19,10 @@ public final class ModBlockEntities {
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, CreateMachining.MOD_ID);
 
     @SuppressWarnings("DataFlowIssue") // build(null) is normal here, the argument is only used by vanilla data fixers
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CncLatheBlockEntity>> CNC_LATHE =
-            BLOCK_ENTITY_TYPES.register("cnc_lathe", () -> BlockEntityType.Builder
-                    .of((pos, state) -> new CncLatheBlockEntity(ModBlockEntities.CNC_LATHE.get(), pos, state),
-                            ModBlocks.CNC_LATHE.get())
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BenchLatheBlockEntity>> BENCH_LATHE =
+            BLOCK_ENTITY_TYPES.register("bench_lathe", () -> BlockEntityType.Builder
+                    .of((pos, state) -> new BenchLatheBlockEntity(ModBlockEntities.BENCH_LATHE.get(), pos, state),
+                            ModBlocks.BENCH_LATHE.get())
                     .build(null));
 
     @SuppressWarnings("DataFlowIssue")
@@ -29,6 +30,13 @@ public final class ModBlockEntities {
             BLOCK_ENTITY_TYPES.register("inspection_station", () -> BlockEntityType.Builder
                     .of((pos, state) -> new InspectionStationBlockEntity(ModBlockEntities.INSPECTION_STATION.get(), pos, state),
                             ModBlocks.INSPECTION_STATION.get())
+                    .build(null));
+
+    @SuppressWarnings("DataFlowIssue")
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CncLatheBlockEntity>> CNC_LATHE =
+            BLOCK_ENTITY_TYPES.register("cnc_lathe", () -> BlockEntityType.Builder
+                    .of((pos, state) -> new CncLatheBlockEntity(ModBlockEntities.CNC_LATHE.get(), pos, state),
+                            ModBlocks.CNC_LATHE.get())
                     .build(null));
 
     private ModBlockEntities() {}

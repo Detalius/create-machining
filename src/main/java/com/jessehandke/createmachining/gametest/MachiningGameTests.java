@@ -2,8 +2,8 @@ package com.jessehandke.createmachining.gametest;
 
 import com.jessehandke.createmachining.CreateMachining;
 import com.jessehandke.createmachining.content.inspection.InspectionStationBlockEntity;
-import com.jessehandke.createmachining.content.lathe.CncLatheBlock;
-import com.jessehandke.createmachining.content.lathe.CncLatheBlockEntity;
+import com.jessehandke.createmachining.content.lathe.BenchLatheBlock;
+import com.jessehandke.createmachining.content.lathe.BenchLatheBlockEntity;
 import com.jessehandke.createmachining.content.quality.QualityGrade;
 import com.jessehandke.createmachining.registry.ModBlocks;
 import com.jessehandke.createmachining.registry.ModDataComponents;
@@ -39,9 +39,9 @@ public class MachiningGameTests {
     private static final BlockPos MOTOR = new BlockPos(2, 1, 3); // directly behind the lathe
 
     /** Lathe facing north (front toward -z), Creative Motor behind it driving the headstock. */
-    private static CncLatheBlockEntity buildLathe(GameTestHelper helper, int rpm) {
-        helper.setBlock(LATHE, ModBlocks.CNC_LATHE.get().defaultBlockState()
-                .setValue(CncLatheBlock.HORIZONTAL_FACING, Direction.NORTH));
+    private static BenchLatheBlockEntity buildLathe(GameTestHelper helper, int rpm) {
+        helper.setBlock(LATHE, ModBlocks.BENCH_LATHE.get().defaultBlockState()
+                .setValue(BenchLatheBlock.HORIZONTAL_FACING, Direction.NORTH));
         helper.setBlock(MOTOR, AllBlocks.CREATIVE_MOTOR.getDefaultState()
                 .setValue(CreativeMotorBlock.FACING, Direction.NORTH)); // shaft points at the lathe
         CreativeMotorBlockEntity motor = helper.getBlockEntity(MOTOR);
@@ -52,7 +52,7 @@ public class MachiningGameTests {
     /** First part at the ideal speed with a fresh insert: process score should be the max, 95. */
     @GameTest(template = EMPTY, timeoutTicks = 400)
     public static void inBandFreshToolScores95(GameTestHelper helper) {
-        CncLatheBlockEntity lathe = buildLathe(helper, 64); // iron band is 32-96
+        BenchLatheBlockEntity lathe = buildLathe(helper, 64); // iron band is 32-96
         lathe.toolInv.setStackInSlot(0, new ItemStack(ModItems.CARBIDE_INSERT.get()));
         lathe.inputInv.setStackInSlot(0, new ItemStack(Items.IRON_INGOT));
 
@@ -68,7 +68,7 @@ public class MachiningGameTests {
     /** 256 RPM on iron (band 32-96) is way over: quality hits the floor and the insert wears double. */
     @GameTest(template = EMPTY, timeoutTicks = 400)
     public static void overspeedTanksQualityAndBurnsTool(GameTestHelper helper) {
-        CncLatheBlockEntity lathe = buildLathe(helper, 256);
+        BenchLatheBlockEntity lathe = buildLathe(helper, 256);
         lathe.toolInv.setStackInSlot(0, new ItemStack(ModItems.CARBIDE_INSERT.get()));
         lathe.inputInv.setStackInSlot(0, new ItemStack(Items.IRON_INGOT));
 
@@ -83,7 +83,7 @@ public class MachiningGameTests {
     /** No insert, no cutting, no matter how long it spins. */
     @GameTest(template = EMPTY, timeoutTicks = 400)
     public static void noToolNoParts(GameTestHelper helper) {
-        CncLatheBlockEntity lathe = buildLathe(helper, 64);
+        BenchLatheBlockEntity lathe = buildLathe(helper, 64);
         lathe.inputInv.setStackInSlot(0, new ItemStack(Items.IRON_INGOT));
 
         helper.runAfterDelay(300, () -> {
@@ -96,7 +96,7 @@ public class MachiningGameTests {
     /** Parts from several cycles pool into ONE uninspected stack instead of a stack per score. */
     @GameTest(template = EMPTY, timeoutTicks = 600)
     public static void latheOutputPoolsIntoOneLot(GameTestHelper helper) {
-        CncLatheBlockEntity lathe = buildLathe(helper, 64);
+        BenchLatheBlockEntity lathe = buildLathe(helper, 64);
         lathe.toolInv.setStackInSlot(0, new ItemStack(ModItems.CARBIDE_INSERT.get()));
         lathe.inputInv.setStackInSlot(0, new ItemStack(Items.IRON_INGOT, 3));
 
@@ -161,7 +161,7 @@ public class MachiningGameTests {
                         .test(graded(ModItems.BRASS_BUSHING.get(), QualityGrade.OUT_OF_TOLERANCE)),
                 "use-as-is recipe should take OOT");
 
-        CncLatheBlockEntity lathe = buildLathe(helper, 64);
+        BenchLatheBlockEntity lathe = buildLathe(helper, 64);
         helper.assertTrue(lathe.isValidStock(graded(ModItems.IRON_BUSHING.get(), QualityGrade.NEEDS_REWORK)),
                 "lathe should accept a rework part");
         helper.assertFalse(lathe.isValidStock(graded(ModItems.IRON_BUSHING.get(), QualityGrade.PERFECT)),
@@ -185,7 +185,7 @@ public class MachiningGameTests {
     }
 
     /** The first stack in the lathe's output that's a bushing, or empty. */
-    private static ItemStack findPart(CncLatheBlockEntity lathe) {
+    private static ItemStack findPart(BenchLatheBlockEntity lathe) {
         for (int slot = 0; slot < lathe.outputInv.getSlots(); slot++) {
             ItemStack stack = lathe.outputInv.getStackInSlot(slot);
             if (stack.is(ModItems.IRON_BUSHING.get()))

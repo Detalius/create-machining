@@ -50,7 +50,7 @@ import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
  *
  * Modelled on Create's MillstoneBlockEntity.
  */
-public class CncLatheBlockEntity extends KineticBlockEntity {
+public class BenchLatheBlockEntity extends KineticBlockEntity {
     /** Countdown value used while waiting on stock that has no turning recipe. */
     private static final int IDLE_RECHECK = 100;
 
@@ -77,7 +77,7 @@ public class CncLatheBlockEntity extends KineticBlockEntity {
     /** Cached so we don't search every recipe in the game on every tick. */
     private TurningRecipe lastRecipe;
 
-    public CncLatheBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public BenchLatheBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
@@ -86,7 +86,7 @@ public class CncLatheBlockEntity extends KineticBlockEntity {
      * have an item handler?" We answer with automationHandler.
      */
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.CNC_LATHE.get(),
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.BENCH_LATHE.get(),
                 (be, side) -> be.automationHandler);
     }
 
@@ -111,9 +111,8 @@ public class CncLatheBlockEntity extends KineticBlockEntity {
             return; // nothing to cut with
 
         // Parts bin full? Feed hold until someone empties it.
-        for (int i = 0; i < outputInv.getSlots(); i++)
-            if (outputInv.getStackInSlot(i).getCount() == outputInv.getSlotLimit(i))
-                return;
+        if (LatheLogic.anySlotFull(outputInv))
+            return;
 
         // Mid-cycle: count down
         if (timer > 0) {
@@ -174,8 +173,7 @@ public class CncLatheBlockEntity extends KineticBlockEntity {
             return;
 
         // Quality is decided by the setup: speeds over the cycle, and tool condition.
-        float toolLife = 1 - (float) tool.getDamageValue() / tool.getMaxDamage();
-        int processScore = QualityModel.processScore(cycleSpeedFactor, QualityModel.toolFactor(toolLife));
+        int processScore = LatheLogic.processScore(cycleSpeedFactor, tool);
 
         // Use up one piece of stock
         ItemStack stock = inputInv.getStackInSlot(0);
@@ -186,59 +184,19 @@ public class CncLatheBlockEntity extends KineticBlockEntity {
         // Machined parts get the hidden process score; swarf doesn't.
         for (ItemStack result : recipe.rollResults(level.random)) {
             if (result.is(ModTags.MACHINED_PARTS))
-                insertIntoLot(result, processScore);
+                LatheLogic.insertIntoLot(outputInv, result, processScore);
             else
                 ItemHandlerHelper.insertItemStacked(outputInv, result, false);
         }
 
-        wearTool(QualityModel.toolWearPerPart(getSpeed(), recipe.getMaxRpm()));
+        LatheLogic.wearTool(toolInv, QualityModel.toolWearPerPart(getSpeed(), recipe.getMaxRpm()), level, worldPosition);
 
         sendData();  // sync to clients
         setChanged(); // mark for saving
     }
 
-    /**
-     * Put fresh parts into the output as one lot. If the bin already holds uninspected parts of
-     * the same kind, they're pooled into a single stack with a count-weighted average score
-     * (like mixing parts in one tote), so they don't split into a stack per score.
-     */
-    private void insertIntoLot(ItemStack parts, int processScore) {
-        for (int slot = 0; slot < outputInv.getSlots() && !parts.isEmpty(); slot++) {
-            ItemStack lot = outputInv.getStackInSlot(slot);
-            if (!lot.is(parts.getItem()) || !lot.has(ModDataComponents.PROCESS_SCORE))
-                continue;
-            int room = lot.getMaxStackSize() - lot.getCount();
-            if (room <= 0)
-                continue;
-            int moved = Math.min(room, parts.getCount());
-            int lotScore = lot.getOrDefault(ModDataComponents.PROCESS_SCORE, 0);
-            int pooledScore = Math.round((lotScore * lot.getCount() + processScore * moved)
-                    / (float) (lot.getCount() + moved));
-            ItemStack merged = lot.copyWithCount(lot.getCount() + moved);
-            merged.set(ModDataComponents.PROCESS_SCORE, pooledScore);
-            outputInv.setStackInSlot(slot, merged);
-            parts.shrink(moved);
-        }
-        if (!parts.isEmpty()) {
-            parts.set(ModDataComponents.PROCESS_SCORE, processScore);
-            ItemHandlerHelper.insertItemStacked(outputInv, parts, false);
-        }
-    }
-
-    private void wearTool(int amount) {
-        ItemStack tool = toolInv.getStackInSlot(0);
-        int newDamage = tool.getDamageValue() + amount;
-        if (newDamage >= tool.getMaxDamage()) {
-            toolInv.setStackInSlot(0, ItemStack.EMPTY); // insert's done, chip it out
-            level.playSound(null, worldPosition, SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1, 1);
-            return;
-        }
-        tool.setDamageValue(newDamage);
-        toolInv.setStackInSlot(0, tool);
-    }
-
     // ---------------------------------------------------------------------------------------------
-    // Interaction helpers (used by CncLatheBlock when a player right-clicks)
+    // Interaction helpers (used by BenchLatheBlock when a player right-clicks)
     // ---------------------------------------------------------------------------------------------
 
     /** Load stock or a carbide insert. Returns whatever didn't fit, or the whole stack if neither. */

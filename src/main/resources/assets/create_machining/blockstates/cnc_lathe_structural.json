@@ -1,0 +1,180 @@
+{
+  "variants": {
+    "facing=north,part=head_front": {
+      "model": "create_machining:block/cnc_lathe/head_front",
+      "y": 0
+    },
+    "facing=north,part=chuck": {
+      "model": "create_machining:block/cnc_lathe/chuck",
+      "y": 0
+    },
+    "facing=north,part=head_top": {
+      "model": "create_machining:block/cnc_lathe/head_top",
+      "y": 0
+    },
+    "facing=north,part=bed_front": {
+      "model": "create_machining:block/cnc_lathe/bed_front",
+      "y": 0
+    },
+    "facing=north,part=chip_tray": {
+      "model": "create_machining:block/cnc_lathe/chip_tray",
+      "y": 0
+    },
+    "facing=north,part=work_zone": {
+      "model": "create_machining:block/cnc_lathe/work_zone",
+      "y": 0
+    },
+    "facing=north,part=turret": {
+      "model": "create_machining:block/cnc_lathe/turret",
+      "y": 0
+    },
+    "facing=north,part=parts_catcher": {
+      "model": "create_machining:block/cnc_lathe/parts_catcher",
+      "y": 0
+    },
+    "facing=north,part=chip_outlet": {
+      "model": "create_machining:block/cnc_lathe/chip_outlet",
+      "y": 0
+    },
+    "facing=north,part=tailstock": {
+      "model": "create_machining:block/cnc_lathe/tailstock",
+      "y": 0
+    },
+    "facing=north,part=tail_top": {
+      "model": "create_machining:block/cnc_lathe/tail_top",
+      "y": 0
+    },
+    "facing=east,part=head_front": {
+      "model": "create_machining:block/cnc_lathe/head_front",
+      "y": 90
+    },
+    "facing=east,part=chuck": {
+      "model": "create_machining:block/cnc_lathe/chuck",
+      "y": 90
+    },
+    "facing=east,part=head_top": {
+      "model": "create_machining:block/cnc_lathe/head_top",
+      "y": 90
+    },
+    "facing=east,part=bed_front": {
+      "model": "create_machining:block/cnc_lathe/bed_front",
+      "y": 90
+    },
+    "facing=east,part=chip_tray": {
+      "model": "create_machining:block/cnc_lathe/chip_tray",
+      "y": 90
+    },
+    "facing=east,part=work_zone": {
+      "model": "create_machining:block/cnc_lathe/work_zone",
+      "y": 90
+    },
+    "facing=east,part=turret": {
+      "model": "create_machining:block/cnc_lathe/turret",
+      "y": 90
+    },
+    "facing=east,part=parts_catcher": {
+      "model": "create_machining:block/cnc_lathe/parts_catcher",
+      "y": 90
+    },
+    "facing=east,part=chip_outlet": {
+      "model": "create_machining:block/cnc_lathe/chip_outlet",
+      "y": 90
+    },
+    "facing=east,part=tailstock": {
+      "model": "create_machining:block/cnc_lathe/tailstock",
+      "y": 90
+    },
+    "facing=east,part=tail_top": {
+      "model": "create_machining:block/cnc_lathe/tail_top",
+      "y": 90
+    },
+    "facing=south,part=head_front": {
+      "model": "create_machining:block/cnc_lathe/head_front",
+      "y": 180
+    },
+    "facing=south,part=chuck": {
+      "model": "create_machining:block/cnc_lathe/chuck",
+      "y": 180
+    },
+    "facing=south,part=head_top": {
+      "model": "create_machining:block/cnc_lathe/head_top",
+      "y": 180
+    },
+    "facing=south,part=bed_front": {
+      "model": "create_machining:block/cnc_lathe/bed_front",
+      "y": 180
+    },
+    "facing=south,part=chip_tray": {
+      "model": "create_machining:block/cnc_lathe/chip_tray",
+      "y": 180
+    },
+    "facing=south,part=work_zone": {
+      "model": "create_machining:block/cnc_lathe/work_zone",
+      "y": 180
+    },
+    "facing=south,part=turret": {
+      "model": "create_machining:block/cnc_lathe/turret",
+      "y": 180
+    },
+    "facing=south,part=parts_catcher": {
+      "model": "create_machining:block/cnc_lathe/parts_catcher",
+      "y": 180
+    },
+    "facing=south,part=chip_outlet": {
+      "model": "create_machining:block/cnc_lathe/chip_outlet",
+      "y": 180
+    },
+    "facing=south,part=tailstock": {
+      "model": "create_machining:block/cnc_lathe/tailstock",
+      "y": 180
+    },
+    "facing=south,part=tail_top": {
+      "model": "create_machining:block/cnc_lathe/tail_top",
+      "y": 180
+    },
+    "facing=west,part=head_front": {
+      "model": "create_machining:block/cnc_lathe/head_front",
+      "y": 270
+    },
+    "facing=west,part=chuck": {
+      "model": "create_machining:block/cnc_lathe/chuck",
+      "y": 270
+    },
+    "facing=west,part=head_top": {
+      "model": "create_machining:block/cnc_lathe/head_top",
+      "y": 270
+    },
+    "facing=west,part=bed_front": {
+      "model": "create_machining:block/cnc_lathe/bed_front",
+      "y": 270
+    },
+    "facing=west,part=chip_tray": {
+      "model": "create_machining:block/cnc_lathe/chip_tray",
+      "y": 270
+    },
+    "facing=west,part=work_zone": {
+      "model": "create_machining:block/cnc_lathe/work_zone",
+      "y": 270
+    },
+    "facing=west,part=turret": {
+      "model": "create_machining:block/cnc_lathe/turret",
+      "y": 270
+    },
+    "facing=west,part=parts_catcher": {
+      "model": "create_machining:block/cnc_lathe/parts_catcher",
+      "y": 270
+    },
+    "facing=west,part=chip_outlet": {
+      "model": "create_machining:block/cnc_lathe/chip_outlet",
+      "y": 270
+    },
+    "facing=west,part=tailstock": {
+      "model": "create_machining:block/cnc_lathe/tailstock",
+      "y": 270
+    },
+    "facing=west,part=tail_top": {
+      "model": "create_machining:block/cnc_lathe/tail_top",
+      "y": 270
+    }
+  }
+}

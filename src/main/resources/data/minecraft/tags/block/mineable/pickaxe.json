@@ -1,1 +1,8 @@
-{ "values": ["create_machining:cnc_lathe", "create_machining:inspection_station"] }
+{
+  "values": [
+    "create_machining:bench_lathe",
+    "create_machining:inspection_station",
+    "create_machining:cnc_lathe",
+    "create_machining:cnc_lathe_structural"
+  ]
+}

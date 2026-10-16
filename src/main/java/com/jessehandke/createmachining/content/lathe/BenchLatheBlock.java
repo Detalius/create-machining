@@ -19,16 +19,16 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 
 /**
- * The lathe as a block type. There's ONE CncLatheBlock object for the whole game, shared by every
+ * The lathe as a block type. There's ONE BenchLatheBlock object for the whole game, shared by every
  * lathe placed in the world, so it holds no per-machine data. Per-machine state (inventory,
- * cycle timer) lives in CncLatheBlockEntity.
+ * cycle timer) lives in BenchLatheBlockEntity.
  *
  * HorizontalKineticBlock is Create's base for machines that face one of 4 directions and take
  * rotational power. IBE<...> is a Create helper that links this block to its block entity.
  */
-public class CncLatheBlock extends HorizontalKineticBlock implements IBE<CncLatheBlockEntity> {
+public class BenchLatheBlock extends HorizontalKineticBlock implements IBE<BenchLatheBlockEntity> {
 
-    public CncLatheBlock(Properties properties) {
+    public BenchLatheBlock(Properties properties) {
         super(properties);
     }
 
@@ -52,7 +52,7 @@ public class CncLatheBlock extends HorizontalKineticBlock implements IBE<CncLath
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
                                               Player player, InteractionHand hand, BlockHitResult hitResult) {
-        // onBlockEntityUseItemOn finds this block's CncLatheBlockEntity and runs our lambda on it.
+        // onBlockEntityUseItemOn finds this block's BenchLatheBlockEntity and runs our lambda on it.
         // "lathe -> ..." is a lambda: an inline unnamed function, similar to a C++ [](auto lathe){...}
         return onBlockEntityUseItemOn(level, pos, lathe -> {
             // The client only predicts the outcome (so your arm swings); the server does the real work.
@@ -74,13 +74,13 @@ public class CncLatheBlock extends HorizontalKineticBlock implements IBE<CncLath
     }
 
     @Override
-    public Class<CncLatheBlockEntity> getBlockEntityClass() {
-        return CncLatheBlockEntity.class;
+    public Class<BenchLatheBlockEntity> getBlockEntityClass() {
+        return BenchLatheBlockEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends CncLatheBlockEntity> getBlockEntityType() {
-        return ModBlockEntities.CNC_LATHE.get();
+    public BlockEntityType<? extends BenchLatheBlockEntity> getBlockEntityType() {
+        return ModBlockEntities.BENCH_LATHE.get();
     }
 
     /** Mobs shouldn't try to walk through it. */

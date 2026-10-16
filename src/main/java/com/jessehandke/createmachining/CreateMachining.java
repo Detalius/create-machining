@@ -8,8 +8,9 @@ import com.jessehandke.createmachining.registry.ModCreativeTabs;
 import com.jessehandke.createmachining.registry.ModDataComponents;
 import com.jessehandke.createmachining.registry.ModItems;
 import com.jessehandke.createmachining.registry.ModRecipeTypes;
+import com.jessehandke.createmachining.content.cnc.CncLatheBlockEntity;
 import com.jessehandke.createmachining.content.inspection.InspectionStationBlockEntity;
-import com.jessehandke.createmachining.content.lathe.CncLatheBlockEntity;
+import com.jessehandke.createmachining.content.lathe.BenchLatheBlockEntity;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.api.stress.BlockStressValues;
 
@@ -40,13 +41,16 @@ public class CreateMachining {
         // Method references (Class::method) work like function pointers in C:
         // "call this method when that event fires".
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(CncLatheBlockEntity::registerCapabilities);
+        modEventBus.addListener(BenchLatheBlockEntity::registerCapabilities);
         modEventBus.addListener(InspectionStationBlockEntity::registerCapabilities);
+        modEventBus.addListener(CncLatheBlockEntity::registerCapabilities);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // How much stress (SU per RPM) the lathe puts on a Create network. The Millstone uses 4.0.
-        BlockStressValues.IMPACTS.register(ModBlocks.CNC_LATHE.get(), () -> 4.0);
+        BlockStressValues.IMPACTS.register(ModBlocks.BENCH_LATHE.get(), () -> 4.0);
+        // The CNC Lathe is a much bigger machine: twice the load
+        BlockStressValues.IMPACTS.register(ModBlocks.CNC_LATHE.get(), () -> 8.0);
     }
 
     /** Shorthand for "create_machining:<path>" IDs. */

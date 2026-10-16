@@ -1,6 +1,7 @@
 package com.jessehandke.createmachining.client;
 
 import com.jessehandke.createmachining.CreateMachining;
+import com.jessehandke.createmachining.client.dev.ScreenshotDirector;
 import com.jessehandke.createmachining.content.quality.QualityGrade;
 import com.jessehandke.createmachining.registry.ModBlockEntities;
 import com.jessehandke.createmachining.registry.ModDataComponents;
@@ -27,10 +28,14 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 public class CreateMachiningClient {
 
     public CreateMachiningClient(IEventBus modEventBus) {
+        CncLatheRenderer.init(); // declares the CNC Lathe's moving-part models before models load
         modEventBus.addListener(CreateMachiningClient::registerRenderers);
         modEventBus.addListener(CreateMachiningClient::clientSetup);
         // Tooltips fire on the game event bus (NeoForge.EVENT_BUS), not the mod's startup bus
         NeoForge.EVENT_BUS.addListener(CreateMachiningClient::addQualityTooltip);
+        // Dev-only: scripted screenshots, when launched with ./gradlew runScreenshotClient
+        if (ScreenshotDirector.enabled())
+            NeoForge.EVENT_BUS.addListener(ScreenshotDirector::onClientTick);
     }
 
     /** "Uninspected" on fresh parts, "Quality: Perfect" (etc.) on inspected ones. */
@@ -66,12 +71,13 @@ public class CreateMachiningClient {
      * Create has two render paths. This one is the fallback renderer...
      */
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.CNC_LATHE.get(), ShaftRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.BENCH_LATHE.get(), ShaftRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.CNC_LATHE.get(), CncLatheRenderer::new);
     }
 
     /** ...and this is the fast one, through Flywheel (Create's instanced renderer). */
     private static void clientSetup(FMLClientSetupEvent event) {
-        SimpleBlockEntityVisualizer.builder(ModBlockEntities.CNC_LATHE.get())
+        SimpleBlockEntityVisualizer.builder(ModBlockEntities.BENCH_LATHE.get())
                 .factory(SingleAxisRotatingVisual::shaft)
                 .skipVanillaRender(be -> false)
                 .apply();

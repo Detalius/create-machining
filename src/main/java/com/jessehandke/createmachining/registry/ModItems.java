@@ -2,6 +2,7 @@ package com.jessehandke.createmachining.registry;
 
 import com.jessehandke.createmachining.CreateMachining;
 
+import com.jessehandke.createmachining.content.cnc.CncLatheItem;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 
 import net.minecraft.world.item.BlockItem;
@@ -13,7 +14,9 @@ public final class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CreateMachining.MOD_ID);
 
     // The item form of the lathe, i.e. what sits in your inventory before you place it
-    public static final DeferredItem<BlockItem> CNC_LATHE = ITEMS.registerSimpleBlockItem(ModBlocks.CNC_LATHE);
+    public static final DeferredItem<BlockItem> BENCH_LATHE = ITEMS.registerSimpleBlockItem(ModBlocks.BENCH_LATHE);
+    public static final DeferredItem<CncLatheItem> CNC_LATHE = ITEMS.register("cnc_lathe",
+            () -> new CncLatheItem(ModBlocks.CNC_LATHE.get(), new Item.Properties().stacksTo(1)));
     public static final DeferredItem<BlockItem> INSPECTION_STATION = ITEMS.registerSimpleBlockItem(ModBlocks.INSPECTION_STATION);
 
     // Tooling. Durability = how many parts it can cut (overspeeding burns through it twice as fast).

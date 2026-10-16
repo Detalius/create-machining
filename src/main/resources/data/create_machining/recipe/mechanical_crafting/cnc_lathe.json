@@ -1,0 +1,49 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "pattern": [
+    "IIIIIII",
+    "BEGGGGI",
+    "BPRSSRI",
+    "LRFFFPI",
+    "AAAAAAA"
+  ],
+  "key": {
+    "I": {
+      "item": "create:industrial_iron_block"
+    },
+    "B": {
+      "item": "create:brass_casing"
+    },
+    "E": {
+      "item": "create:electron_tube"
+    },
+    "G": {
+      "item": "create:framed_glass"
+    },
+    "P": {
+      "item": "create:precision_mechanism"
+    },
+    "R": {
+      "item": "create_machining:bearing_assembly"
+    },
+    "S": {
+      "item": "create:sturdy_sheet"
+    },
+    "L": {
+      "item": "create:large_cogwheel"
+    },
+    "F": {
+      "item": "create:fluid_pipe"
+    },
+    "A": {
+      "item": "create:andesite_casing"
+    }
+  },
+  "result": {
+    "id": "create_machining:cnc_lathe",
+    "count": 1
+  },
+  "show_notification": true
+}

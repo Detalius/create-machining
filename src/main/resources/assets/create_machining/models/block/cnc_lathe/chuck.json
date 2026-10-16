@@ -1,0 +1,266 @@
+{
+  "parent": "block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "body": "create:block/industrial_iron_block",
+    "head": "create:block/brass_casing",
+    "lcd": "minecraft:block/lime_concrete",
+    "screen": "minecraft:block/black_concrete",
+    "steel": "minecraft:block/iron_block",
+    "particle": "create:block/industrial_iron_block"
+  },
+  "elements": [
+    {
+      "name": "headstock",
+      "from": [
+        2,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#head"
+        },
+        "east": {
+          "texture": "#head"
+        },
+        "west": {
+          "texture": "#head"
+        },
+        "up": {
+          "texture": "#head"
+        }
+      }
+    },
+    {
+      "name": "panel",
+      "from": [
+        4,
+        0,
+        -1
+      ],
+      "to": [
+        14,
+        13,
+        0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body"
+        },
+        "south": {
+          "texture": "#body"
+        },
+        "east": {
+          "texture": "#body"
+        },
+        "west": {
+          "texture": "#body"
+        },
+        "up": {
+          "texture": "#body"
+        }
+      }
+    },
+    {
+      "name": "screen",
+      "from": [
+        5,
+        1,
+        -1.3
+      ],
+      "to": [
+        13,
+        11,
+        -1
+      ],
+      "faces": {
+        "north": {
+          "texture": "#screen"
+        },
+        "south": {
+          "texture": "#screen"
+        },
+        "east": {
+          "texture": "#screen"
+        },
+        "west": {
+          "texture": "#screen"
+        },
+        "up": {
+          "texture": "#screen"
+        },
+        "down": {
+          "texture": "#screen"
+        }
+      }
+    },
+    {
+      "name": "screen_text_1",
+      "from": [
+        7,
+        8,
+        -1.4
+      ],
+      "to": [
+        12,
+        9,
+        -1.3
+      ],
+      "faces": {
+        "north": {
+          "texture": "#lcd"
+        },
+        "south": {
+          "texture": "#lcd"
+        },
+        "east": {
+          "texture": "#lcd"
+        },
+        "west": {
+          "texture": "#lcd"
+        },
+        "up": {
+          "texture": "#lcd"
+        },
+        "down": {
+          "texture": "#lcd"
+        }
+      }
+    },
+    {
+      "name": "screen_text_2",
+      "from": [
+        6,
+        5,
+        -1.4
+      ],
+      "to": [
+        12,
+        6,
+        -1.3
+      ],
+      "faces": {
+        "north": {
+          "texture": "#lcd"
+        },
+        "south": {
+          "texture": "#lcd"
+        },
+        "east": {
+          "texture": "#lcd"
+        },
+        "west": {
+          "texture": "#lcd"
+        },
+        "up": {
+          "texture": "#lcd"
+        },
+        "down": {
+          "texture": "#lcd"
+        }
+      }
+    },
+    {
+      "name": "screen_text_3",
+      "from": [
+        9,
+        2,
+        -1.4
+      ],
+      "to": [
+        12,
+        3,
+        -1.3
+      ],
+      "faces": {
+        "north": {
+          "texture": "#lcd"
+        },
+        "south": {
+          "texture": "#lcd"
+        },
+        "east": {
+          "texture": "#lcd"
+        },
+        "west": {
+          "texture": "#lcd"
+        },
+        "up": {
+          "texture": "#lcd"
+        },
+        "down": {
+          "texture": "#lcd"
+        }
+      }
+    },
+    {
+      "name": "bar_feeder_port",
+      "from": [
+        16,
+        3,
+        3
+      ],
+      "to": [
+        17,
+        13,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#steel"
+        },
+        "south": {
+          "texture": "#steel"
+        },
+        "east": {
+          "texture": "#steel"
+        },
+        "west": {
+          "texture": "#steel"
+        },
+        "up": {
+          "texture": "#steel"
+        },
+        "down": {
+          "texture": "#steel"
+        }
+      }
+    },
+    {
+      "name": "rail_top",
+      "from": [
+        0,
+        14,
+        0
+      ],
+      "to": [
+        2,
+        16,
+        2
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body"
+        },
+        "south": {
+          "texture": "#body"
+        },
+        "east": {
+          "texture": "#body"
+        },
+        "up": {
+          "texture": "#body"
+        },
+        "down": {
+          "texture": "#body"
+        }
+      }
+    }
+  ]
+}

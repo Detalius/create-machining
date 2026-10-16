@@ -13,5 +13,5 @@
     "C": { "item": "create:brass_casing" },
     "A": { "item": "create:andesite_alloy" }
   },
-  "result": { "id": "create_machining:cnc_lathe", "count": 1 }
+  "result": { "id": "create_machining:bench_lathe", "count": 1 }
 }

@@ -3,8 +3,17 @@
   "pools": [
     {
       "rolls": 1,
-      "entries": [ { "type": "minecraft:item", "name": "create_machining:cnc_lathe" } ],
-      "conditions": [ { "condition": "minecraft:survives_explosion" } ]
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "create_machining:cnc_lathe"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
     }
   ]
 }

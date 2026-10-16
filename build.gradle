@@ -40,6 +40,13 @@ neoForge {
             server()
             programArgument '--nogui'
         }
+        // Dev tool: opens the "cnc_scene" test world, films the CNC Lathe, saves PNGs to
+        // run/screenshots/ and quits. See client/dev/ScreenshotDirector.java.
+        screenshotClient {
+            client()
+            systemProperty 'create_machining.screenshot', 'true'
+            programArguments.addAll '--quickPlaySingleplayer', 'cnc_scene', '--width', '1280', '--height', '720'
+        }
         // Boots a headless world, runs every @GameTest, then exits (non-zero if any failed)
         gameTestServer {
             type = 'gameTestServer'

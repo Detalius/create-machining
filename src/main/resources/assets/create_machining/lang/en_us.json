@@ -1,6 +1,6 @@
 {
   "itemGroup.create_machining": "Create: Machining",
-  "block.create_machining.cnc_lathe": "CNC Lathe",
+  "block.create_machining.bench_lathe": "Bench Lathe",
   "item.create_machining.iron_bushing": "Iron Bushing",
   "item.create_machining.brass_bushing": "Brass Bushing",
   "item.create_machining.iron_swarf": "Iron Swarf",
@@ -22,5 +22,18 @@
   "create_machining.grade.in_tolerance": "In-Tolerance",
   "create_machining.grade.out_of_tolerance": "Out of Tolerance",
   "create_machining.grade.needs_rework": "Needs Rework",
-  "create_machining.grade.scrap": "Scrap"
+  "create_machining.grade.scrap": "Scrap",
+  "block.create_machining.cnc_lathe": "CNC Lathe",
+  "block.create_machining.cnc_lathe_structural": "CNC Lathe",
+  "create_machining.cnc_lathe.no_room": "Not enough room: the CNC Lathe needs a clear 3 wide, 2 deep, 2 tall space",
+  "create_machining.cnc_lathe.door_locked": "Cycle in progress: the door is interlocked",
+  "create_machining.goggles.cnc_header": "CNC Lathe:",
+  "create_machining.goggles.phase.idle": "Idle, door open",
+  "create_machining.goggles.phase.closing": "Door closing",
+  "create_machining.goggles.phase.cutting": "Cutting",
+  "create_machining.goggles.phase.opening": "Cycle complete, door opening",
+  "create_machining.goggles.chip_tray": "Chip tray: %s / %s",
+  "create_machining.goggles.conveyor_on": "Chip conveyor installed",
+  "create_machining.goggles.conveyor_off": "No chip conveyor (right-click the tray with a Mechanical Belt)",
+  "create_machining.goggles.coolant_on": "Coolant: on"
 }

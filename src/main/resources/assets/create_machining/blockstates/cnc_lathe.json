@@ -1,8 +1,20 @@
 {
   "variants": {
-    "facing=north": { "model": "create_machining:block/cnc_lathe" },
-    "facing=east":  { "model": "create_machining:block/cnc_lathe", "y": 90 },
-    "facing=south": { "model": "create_machining:block/cnc_lathe", "y": 180 },
-    "facing=west":  { "model": "create_machining:block/cnc_lathe", "y": 270 }
+    "facing=north": {
+      "model": "create_machining:block/cnc_lathe/controller",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "create_machining:block/cnc_lathe/controller",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "create_machining:block/cnc_lathe/controller",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "create_machining:block/cnc_lathe/controller",
+      "y": 270
+    }
   }
 }
